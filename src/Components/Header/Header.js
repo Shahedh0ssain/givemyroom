@@ -1,30 +1,12 @@
 
 import './Header.css';
+import Sidebar from '../Sidebar/Sidebar'
 
 
 
-// const auth = getAuth(app);
+const Header = ({ onOpenSidebar, }) => {
 
-const Header = ({ onOpenSidebar }) => {
 
-    // const { user } = useFirebase();
-    // const [user] = useAuthState(auth);
-
-    // function loadGoogleTranslate() {
-    //     new google.translate.TranslateElement("google_element");
-    // }
-    // <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
-
-    // const [isOpen, setIsOpen] = useState(false);
-
-    // const toggleSidebar = () => {
-    //     setIsOpen(!isOpen);
-    // };
-    // const [isOpen, setIsOpen] = useState(false);
-
-    // const toggleSidebar = () => {
-    //     setIsOpen(!isOpen);
-    // };
 
     return (
 
@@ -37,7 +19,7 @@ const Header = ({ onOpenSidebar }) => {
         //         </div>
         //         <Sidebar onCloseSidebar={closeSidebar}></Sidebar>
 
-        //         <div class="logo">
+        //         <div class="     ">
         //             <a href="givemyroom.com/">
         //                 <img src="images/GIVE-MY-ROOM.png" alt="" srcset="" />
         //                 {/* <img src="images/GIVE-MY-ROOM.png" alt="logo"> */}
@@ -47,24 +29,39 @@ const Header = ({ onOpenSidebar }) => {
         //         <div id="google_element"></div>
         //     </div>
         // </header>
-        <div className="">
-            <div className="header">
-                <div className="open-btn" onClick={onOpenSidebar}>
-                    ☰
-                </div>
-                <div class="logo">
-                    <a href="givemyroom.com/">
-                        <img src="images/GIVE-MY-ROOM.png" alt="logo" />
-                    </a>
-                </div>
-                <div>
-                    <div id="google_translate_element"></div>
-                    {/* <Traslate></Traslate> */}
-                    {/* <p className='text-white mb-0'>{user ? user.email : `User name`}</p> */}
-                </div>
 
+
+        // <div className="">
+        //     <div className="header">
+        //         <div className="open-btn" onClick={onOpenSidebar}>
+        //             <i class="fa-solid fa-bars"></i>
+
+        //         </div>
+        //         <div class="logo">
+        //             <a href="givemyroom.com/">
+        //                 <img src="images/GIVE-MY-ROOM.png" alt="logo" />
+        //             </a>
+        //         </div>
+        //         <div>
+        //             <div id="google_translate_element"></div>
+        //             {/* <Traslate></Traslate> */}
+        //             {/* <p className='text-white mb-0'>{user ? user.email : `User name`}</p> */}
+        //         </div>
+
+        //     </div>
+        // </div>
+
+
+        <header class="main_menu">
+            <div class="menu_icon" onClick={onOpenSidebar}>
+                <a href="#" class="openbtn" ><i class="fa-solid fa-bars"></i></a>
             </div>
-        </div>
+            {/* <Sidebar onCloseSidebar={closeSidebar}></Sidebar> */}
+            <div class="logo">
+                <a href="givemyroom.com/"><img src="images/GIVE-MY-ROOM.png" alt="logo" /></a>
+            </div>
+            <div id="google_translate_element"></div>
+        </header>
 
 
 

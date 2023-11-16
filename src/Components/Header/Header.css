@@ -24,20 +24,31 @@ header {
     padding: 0.5rem;
 }
 
-.logo {
+/* .logo {
     width: 14.25rem;
     /* height: 6.37rem; */
-    height: 100%;
-    /* display: flex; */
-    /* margin: auto; */
+/* height: 100%; */
+/* display: flex; */
+/* margin: auto; */
+/* text-align: center; */
+/* justify-content: flex-end; */
+
+
+.logo {
+    width: 14.25rem;
+    height: 6.37rem;
+    display: flex;
+    margin: auto;
     text-align: center;
-    /* justify-content: flex-end; */
 }
+
+
 
 .logo img {
     width: 62%;
     height: 114%;
-    margin-left: 80px;
+    margin-left: 100px;
 }
+
 
 /* extra */

@@ -2,11 +2,13 @@
 import React from 'react';
 import GoogleLogIn from '../../GoogleLogIn/GoogleLogIn';
 import './Login.css'
+// import './Login.module.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import app from "../../../firebase.init";
 import { getAuth } from "firebase/auth";
+import FacebookLogin from '../../FacebookLogin/FacebookLogin';
 
 // const auth = getAuth(app)
 const Login = () => {
@@ -130,10 +132,11 @@ const Login = () => {
                         </div>
                         <div>
                             <GoogleLogIn></GoogleLogIn>
-                            <button
+                            <FacebookLogin></FacebookLogin>
+                            {/* <button
                                 // onClick={() => signInWithGoogle()}
                                 className="googlebtn "
-                            >Sign in with FACEBOOK</button>
+                            >Sign in with FACEBOOK</button> */}
                         </div>
                     </div>
 

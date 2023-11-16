@@ -64,42 +64,13 @@ const Sidebar = ({ isOpen, onCloseSidebar }) => {
                 <i className="close-btn fa fa-close" onClick={() => { onCloseSidebar(); }}></i>
                 <ul class="menu">
 
-
                     {navLink}
-
-                    {/* {
-                        user ?
-
-                            <>
-                                <li><Link to="/">Home</Link></li>
-                                <button
-                                    onClick={() => logout()}
-                                ><Link>Logout</Link></button>
-
-                            </>
-                            :
-                            <>
-                                <li><Link to="/">Home</Link></li>
-                                <li><Link to="/login">Login</Link></li>
-                                <li><Link to="/register">Register</Link></li>
-                            </>
-                    } */}
-                    {/* <>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/login">Login</Link></li>
-                        <li><Link to="/register">Register</Link></li>
-                    </> */}
 
                 </ul>
             </div>
         </section>
 
-        // <ul>
-        //     <li>Home</li>
-        //     <li>Home</li>
-        //     <li>Home</li>
-        // </ul>
-        // </div>
+     
     );
 };
 
