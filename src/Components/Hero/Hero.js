@@ -150,7 +150,7 @@ const Hero = () => {
                                                 </div>
 
                                                 <div className='mt-2 border-b-4 border-black'></div>
-                                                {/* <div className=''>fdsf</div> */}
+
                                                 <div className='d-flex align-items-center p-2 mt-2 '>
                                                     <img className='pe-2' src="images/adult.png" />
                                                     <div class="btn-minus">
@@ -187,8 +187,7 @@ const Hero = () => {
                                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                                     </div>
                                                 </div>
-                                                {/* <div><img src="images/child.png" /><button class="btn-minus"><i class="fa-solid fa-minus"></i></button><input type="number" placeholder="0"/><button class="btn-plus"><i class="fa-solid fa-plus"></i></button></div> */}
-                                                {/* <div><img src="images/05.png" /><button class="btn-minus"><i class="fa-solid fa-minus"></i></button><input type="number" placeholder="0" /><button class="btn-plus"><i class="fa-solid fa-plus"></i></button></div> */}
+
                                                 <div className='d-flex justify-content-between p-2'>
 
                                                     <button class="reset">Reset</button>
