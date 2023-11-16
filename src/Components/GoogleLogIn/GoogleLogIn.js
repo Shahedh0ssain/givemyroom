@@ -12,11 +12,11 @@ const GoogleLogIn = () => {
     let location = useLocation();
     let navigate = useNavigate();
     let from = location.state?.from?.pathname || "/";
-    
+
 
     if (user) {
-      
-       navigate(from, { replace: true });
+
+        navigate(from, { replace: true });
     }
     if (loading) {
         console.log('loading');
@@ -28,10 +28,14 @@ const GoogleLogIn = () => {
 
     return (
         <div className=''>
+            {/* <img className="" src="images/gmail-icon.png" alt=""></img> */}
             <button
                 onClick={() => signInWithGoogle()}
-                className="googlebtn "
-            >Sign in with GMAIL</button>
+                className="googlebtn d-flex justify-content-center "
+            >
+                <img className="gimg" src="images/gmail-icon.png" alt="" />
+                <span className="px-2">Sign in with GMAIL</span>
+            </button>
         </div>
     );
 };

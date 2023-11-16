@@ -1184,3 +1184,9 @@ form ul .drop-menu {
   height: 4rem;
   margin-top: -6px;
 }
+
+.gimg {
+  width: 40px;
+  padding-top: 5px;
+  /* padding-right: 10px; */
+}
