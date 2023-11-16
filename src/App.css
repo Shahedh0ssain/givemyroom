@@ -882,16 +882,16 @@ form ul .drop-menu {
   background-color: white;
   text-align: center;
   line-height: 25px;
-  margin-bottom: 13px;
+  /* margin-bottom: 13px; */
   border: 2px solid gray;
-  top: 41px;
+  /* top: 41px; */
   position: relative;
 }
 
 .btn-minus i {
   position: relative;
   left: 20px;
-  top: -41px;
+  top: -40px;
   height: 0px;
   font-size: 17px;
 }
@@ -905,14 +905,14 @@ form ul .drop-menu {
   line-height: 25px;
   margin-left: 15px;
   border: 2px solid gray;
-  top: 41px;
+  /* top: 41px; */
   position: relative;
 }
 
 .btn-plus i {
   position: relative;
   left: 20px;
-  top: -41px;
+  top: -40px;
   height: 0px;
   font-size: 17px;
 }
@@ -953,8 +953,8 @@ form ul .drop-menu {
   border-radius: 5px;
   background-color: black;
   color: white;
-  float: left;
-  margin-top: 19px;
+  /* float: left; */
+  /* margin-top: 19px; */
 }
 
 .apply {
@@ -963,10 +963,10 @@ form ul .drop-menu {
   border-radius: 5px;
   background-color: black;
   color: white;
-  float: right;
-  margin-right: 37px;
-  margin-bottom: 16px;
-  margin-top: 19px;
+  /* float: right; */
+  /* margin-right: 37px; */
+  /* margin-bottom: 16px; */
+  /* margin-top: 19px; */
 }
 
 .btn-submit-search {
