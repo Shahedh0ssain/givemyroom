@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import GoogleLogIn from '../../GoogleLogIn/GoogleLogIn';
 import './Login.css'
 // import './Login.module.css';
@@ -9,9 +9,47 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import app from "../../../firebase.init";
 import { getAuth } from "firebase/auth";
 import FacebookLogin from '../../FacebookLogin/FacebookLogin';
+import mapComponent from '../../mapComponent/mapComponent';
 
 // const auth = getAuth(app)
 const Login = () => {
+
+
+    let islocation = true;
+
+    useEffect(() => {
+
+        // Create a new map instance
+        if (window.google && window.google.maps) {
+            // Create a new map instance
+            // setisLoading(true);
+            if (islocation) {
+                const map = new window.google.maps.Map(document.getElementById('map'), {
+                    center: { lat: -34.397, lng: 150.644 },
+                    // center: { lat: islocation.latitude, lng: islocation.longitude },
+                    zoom: 10,
+                });
+
+                // Optionally, you can add markers, polygons, etc.
+
+                const marker = new window.google.maps.Marker({
+                    position: { lat: -34.397, lng: 150.644 },
+                    // position: { lat: islocation.latitude, lng: islocation.longitude },
+                    map: map,
+                    title: 'Hello World!',
+                });
+                marker.setMap(map);
+                // setisLoading(false);
+            } else {
+                console.log("islocation error", islocation);
+                // setisLoading(false);
+            }
+        } else {
+            console.error('Google Maps API not loaded.');
+            // setisLoading(false);
+        }
+    }, [islocation]);
+
 
     const auth = getAuth(app);
     const [
@@ -31,7 +69,7 @@ const Login = () => {
 
     if (user) {
         navigate(from, { replace: true });
-        // console.log("user", user);
+
     }
     if (loading) {
         console.log("loading");
@@ -41,7 +79,8 @@ const Login = () => {
     }
 
     // const {signInWithGoogle}= useFirebase();
-    const { register, reset, formState: { errors }, handleSubmit } = useForm()
+    const { register, reset, formState: { errors }, handleSubmit } = useForm();
+
     const onSubmit = (data) => {
         // console.log("LOGIN", data);
         const { Email, Password } = data;
@@ -50,40 +89,24 @@ const Login = () => {
     }
 
     return (
-        // <div className='container '>
-
-        //     <h2 className='text-center text-primary mt-5' >Login Now!</h2>
-        //     {/* <h2 className='text-center mt-5'>{register ? 'Login Now!!' :' Register Now!!'}</h2> */}
-        //     <div className='d-flex align-center justify-content-center  mt-5'>
-        //         <button onClick={() => signInWithGoogle()}>Google sign in</button>
-        //     </div>
-        //     {/* <GoogleLogIn></GoogleLogIn> */}
-        //     <Form className=' border  border-success w-50 mx-auto mt-5 p-4'>
-        //         <Form.Group className="mb-3" controlId="formBasicEmail">
-        //             <Form.Label>Email address</Form.Label>
-        //             <Form.Control type="email" placeholder="Enter email" />
-        //         </Form.Group>
-
-        //         <Form.Group className="mb-3" controlId="formBasicPassword">
-        //             <Form.Label>Password</Form.Label>
-        //             <Form.Control type="password" placeholder="Password" />
-        //         </Form.Group>
-
-
-        //         <Button variant="primary" type="submit">
-
-        //             Login Now
-
-        //         </Button>
-        //     </Form>
-        // </div>
 
         <section className=''>
             <div className='container'>
                 <div className="roww">
 
+                    <div className='map-container my-5'>
+
+                        <div className='pt-5 rounded' id="map" style={{ width: '400px', height: '350px' }}>
+                            {/* <img className='rounded-circle' src="images/map.png" alt="Girl in a jacket" ></img> */}
+                            {/* <mapComponent></mapComponent> */}
+
+                        </div>
+
+
+                    </div>
+
                     {/* //from start */}
-                    <div className='full-form'>
+                    <div className='full-form rounded'>
                         <div>
                             <form onSubmit={handleSubmit(onSubmit)} className="reg-form">
                                 <h2>Log in and send your offer</h2>

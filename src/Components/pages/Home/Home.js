@@ -1,13 +1,15 @@
 import React from "react";
 import Hero from '../../Hero/Hero';
+// import mapComponent from '../../mapComponent/mapComponent';
 
 
-// const auth = getAuth(app)
+
 const Home = () => {
-    // const [user, error] = useAuthState(auth);
+
     return (
         <div>
             <Hero></Hero>
+            {/* <mapComponent></mapComponent> */}
         </div>
     );
 };

@@ -6,6 +6,8 @@ import Login from './Components/pages/Login/Login';
 import Register from './Components/pages/Register/Register'
 import Footer from './Components/pages/Footer/Footer';
 import Navber from './Components/pages/Navber/Navber';
+import Requireauth from './Components/pages/Requireauth/Requireauth';
+import Map from './Components/pages/Map/Map';
 
 
 
@@ -13,15 +15,14 @@ import Navber from './Components/pages/Navber/Navber';
 
 function App() {
   return (
-    <div >
+    <div>
       <Navber></Navber>
-    
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        {/* <Route path="/products" element={<Products />}></Route> */}
-        {/* <Route path="/order" element={
+        <Route path="/map" element={<Map />}></Route>
+        {/* <Route  path="/map" element={
           <Requireauth>
-            <Order></Order>
+            <Map></Map>
           </Requireauth>
         }></Route> */}
         <Route path="/login" element={<Login />}></Route>

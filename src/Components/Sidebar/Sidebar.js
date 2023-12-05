@@ -38,8 +38,7 @@ const Sidebar = ({ isOpen, onCloseSidebar }) => {
 
             <>
 
-                {/* <li><Link to="/">Home</Link></li> */}
-                <li>
+S                <li>
                     <button
 
                         className=' text-center logout-btn '

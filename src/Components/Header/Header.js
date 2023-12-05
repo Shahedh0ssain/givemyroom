@@ -1,6 +1,5 @@
 
 import './Header.css';
-import Sidebar from '../Sidebar/Sidebar'
 
 
 

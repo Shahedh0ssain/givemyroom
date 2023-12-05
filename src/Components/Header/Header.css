@@ -45,9 +45,9 @@ header {
 
 
 .logo img {
-    width: 62%;
-    height: 114%;
-    margin-left: 100px;
+    width: auto;
+    height: 100%;
+    /* margin-left: 100px; */
 }
 
 

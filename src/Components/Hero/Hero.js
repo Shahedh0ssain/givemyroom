@@ -1,16 +1,113 @@
 
+
+import React, { useEffect } from "react";
 import './Hero.css'
-import img1 from '../../images/img2.png';
+// import img1 from '../../images/img2.png';
 import { useState } from 'react';
-// import Dropdown from '../Dropdown/Dropdown.js';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+// import mapPlace from '../mapPlace/mapPlace';
+import LocatinBtn from "../LocationBtn/LocationBtn";
+
+
 
 const Hero = () => {
 
     const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate();
+
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
+
+    let islocation = true;
+    // const [islocation, setisLocation] = useState(false);
+    const [isloading, setisLoading] = useState(false);
+
+    const apiKey = 'AIzaSyD0JoV7YKa9kV63QHVz7XG2Ij1on6SLjB8';
+    // Make a request to find hotels near a location
+    const location = { lat: 37.7749, lng: -122.4194 }; // Example coordinates for San Francisco
+    const radius = 1000; // Search within a 1 km radius
+    const type = 'lodging'; // Search for lodging (hotels)
+
+    // useEffect(() => {
+
+    //     // Create a new map instance
+    //     if (window.google && window.google.maps) {
+    //         // Create a new map instance
+    //         setisLoading(true);
+    //         if (islocation) {
+    //             const map = new window.google.maps.Map(document.getElementById('map'), {
+    //                 center: { lat: -34.397, lng: 150.644 },
+    //                 // center: { lat: islocation.latitude, lng: islocation.longitude },
+    //                 zoom: 30,
+    //             });
+
+    //             // Optionally, you can add markers, polygons, etc.
+
+    //             const marker = new window.google.maps.Marker({
+    //                 position: { lat: -34.397, lng: 150.644 },
+    //                 // position: { lat: islocation.latitude, lng: islocation.longitude },
+    //                 map: map,
+    //                 title: 'Hello World!',
+    //             });
+    //             marker.setMap(map);
+    //             setisLoading(false);
+    //         } else {
+    //             console.log("islocation error", islocation);
+    //             setisLoading(false);
+    //         }
+    //     } else {
+    //         console.error('Google Maps API not loaded.');
+    //         setisLoading(false);
+    //     }
+    // }, [islocation]);
+
+
+    const handleLocationReceived = (location) => {
+        // Handle the received location, for example, save it to state or perform any other action
+        console.log('Received Location:', location);
+        // setisLocation(location);
+
+    };
+
+    // onLocationReceived={handleLocationReceived}
+
+
+
+
+
+    // const apiUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location.lat},${location.lng}&radius=${radius}&type=${type}&key=${apiKey}`;
+
+
+    // let headers = new Headers();
+    // headers.append('Content-Type', 'application/json');
+
+
+
+    // useEffect(() => {
+
+    // fetch(`https://ass-backend-12-copy.onrender.com/myservice?email=${user?.email}`)
+    //     .then(res => res.json())
+    //     .then(data => setOrders(data));
+
+    // fetch('/places')
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         // Process the data, which will contain information about nearby hotels
+    //         console.log(data);
+
+    // Example: Log names and addresses of nearby hotels
+    // data.results.forEach(hotel => {
+    //     console.log(`Name: ${hotel.name}, Address: ${hotel.vicinity}`);
+    // });
+    // })
+    // .catch(error => {
+    //     console.error('Error fetching data:', error);
+    // });
+
+    // }, []);
+
     // function setDatepicker(_this) {
 
     //     /* Get the parent class name so we  
@@ -40,6 +137,24 @@ const Hero = () => {
     //     // document.getElementById("myDropdown").classList.toggle("show");
     // }
 
+    if (isloading) {
+        console.log("isloading true");
+        return (
+            <div className="vh-100">
+                <p>Loading..</p>
+            </div>
+        )
+    }
+
+
+    // && !isloading
+
+    // if (islocation  ) {
+    //     console.log("islocation true");
+    //     navigate("/map");       
+    // }
+
+
     return (
 
         <section>
@@ -49,7 +164,11 @@ const Hero = () => {
                         {/* <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a> */}
                         <input type="search" placeholder="CITY, TOWN" />
                         <div class="map d-flex  justify-content-center">
-                            <i class="fa-solid fa-map-location-dot"></i>
+
+                            {/* <i class="fa-solid fa-map-location-dot"> */}
+                            <LocatinBtn onLocationReceived={handleLocationReceived} >
+                            </LocatinBtn>
+                      
                         </div>
                     </div>
 
@@ -207,105 +326,20 @@ const Hero = () => {
 
                     </form>
                     <div class="banner">
-                        <img class="col-lg-4" src={img1} alt="My Image" />
+                    
+                        {/* <div id="map" style={{ width: '400px', height: '400px' }}>
+                        </div> */}
+                
+                        {/* <img class="col-lg-4" src={img1} alt="My Image" />
                         <img class="col-lg-4" src="images/img2.png" />
-                        <img class="col-lg-4" src="images/img3.png" />
+                        <img class="col-lg-4" src="images/img3.png" /> */}
                     </div>
+
                 </div>
+
             </div>
         </section >
 
-        // <setion id="middle_banner">
-
-        //     <div class="container">
-
-        //         <div class="search">
-        //             {/* <!-- <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a> --> */}
-        //             <input type="search" placeholder="CITY, TOWN" />
-        //             <div class="map"><a href="#"><i class="fa-solid fa-map-location-dot"></i></a></div>
-        //         </div>
-
-        //         <form className='form'>
-        //             <ul class="multi-search-box">
-        //                 <li>
-        //                     <p>Check In</p>
-        //                     <div class="input-group date">
-        //                         {/* <!-- Sets the calendar icon --> */}
-        //                         <span class="input-group-prepend">
-        //                             <span class="input-group-text">
-        //                                 <i class="fa fa-calendar"
-        //                                     onclick="setDatepicker(this)">
-        //                                 </i>
-        //                             </span>
-        //                         </span>
-
-        //                         {/* <!-- Accepts the input from calendar --> */}
-        //                         <input class="form-control" type="text"
-        //                             name="dob" id="dob" placeholder="--/--/--" />
-        //                     </div>
-        //                 </li>
-        //                 <li>
-        //                     <p>Check Out</p>
-        //                     <div class="input-group date">
-        //                         {/* <!-- Sets the calendar icon --> */}
-        //                         <span class="input-group-prepend">
-        //                             <span class="input-group-text">
-        //                                 <i class="fa fa-calendar"
-        //                                     onclick="setDatepicker(this)">
-        //                                 </i>
-        //                             </span>
-        //                         </span>
-
-        //                         {/* <!-- Accepts the input from calendar --> */}
-        //                         <input class="form-control" type="text"
-        //                             name="dob" id="dob" placeholder="--/--/--" />
-        //                     </div>
-        //                 </li>
-        //                 <li class="price">
-        //                     <p>Price</p>
-        //                     <input type="number" maxlength="8" placeholder="$5000" />
-        //                 </li>
-
-        //                 <li class="drop-menu ">
-        //                     <div class="dropdown">
-        //                         <img class="btn-img" src="images/05.png" />
-        //                         <p onclick="myFunction()" class="dropbtn">Guests and Rooms</p>
-        //                         <div id="myDropdown" class="dropdown-content show">
-        //                             <ul>
-        //                                 <li>
-        //                                     <div class="radio">
-        //                                         <input type="radio" name="myRadio" value="option1" class="radio__input" id="myRadio1" />
-        //                                         <label class="radio__label" for="myRadio1"><img src="images/hotel.png" /></label>
-
-        //                                         <input type="radio" name="myRadio" value="option2" class="radio__input" id="myRadio2" />
-        //                                         <label class="radio__label" for="myRadio2"><img src="images/04.png" />
-
-        //                                         </label>
-
-        //                                         <input type="radio" name="myRadio" value="option3" class="radio__input" id="myRadio3" />
-        //                                         <label class="radio__label" for="myRadio3">
-        //                                             <img src="images/05.png" />
-        //                                         </label>
-        //                                     </div>
-        //                                 </li>
-        //                                 <li><img src="images/adult.png" /><button class="btn-minus"><i class="fa-solid fa-minus"></i></button><input type="number" placeholder="0" /><button class="btn-plus"><i class="fa-solid fa-plus"></i></button></li>
-        //                                 <li><img src="images/child.png" /><button class="btn-minus"><i class="fa-solid fa-minus"></i></button><input type="number" placeholder="0" /><button class="btn-plus"><i class="fa-solid fa-plus"></i></button></li>
-        //                                 <li><img src="images/05.png" /><button class="btn-minus"><i class="fa-solid fa-minus"></i></button><input type="number" placeholder="0" /><button class="btn-plus"><i class="fa-solid fa-plus"></i></button></li>
-        //                                 <button class="reset">Reset</button><button class="apply">Apply</button>
-        //                             </ul>
-        //                         </div>
-        //                     </div>
-        //                 </li>
-        //             </ul>
-        //             <button class="btn2 btn-submit-search" type="submit">Search</button>
-        //         </form>
-        //         <div class="banner">
-        //             <img class="col-lg-4" src="images/img1.png" />
-        //             <img class="col-lg-4" src="images/img2.png" />
-        //             <img class="col-lg-4" src="images/img3.png" />
-        //         </div>
-        //     </div>
-        // </setion>
 
     );
 };
