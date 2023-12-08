@@ -1,12 +1,10 @@
 
 
-import React, { useEffect } from "react";
-import './Hero.css'
-// import img1 from '../../images/img2.png';
-import { useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
-// import mapPlace from '../mapPlace/mapPlace';
+import React, { useEffect, useState } from "react";
+import './Hero.css';
+import { useNavigate } from 'react-router-dom';
 import LocatinBtn from "../LocationBtn/LocationBtn";
+import useMap from "../Hooks/useMap";
 
 
 
@@ -15,65 +13,73 @@ const Hero = () => {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
 
+    const nolocation = {
+        latitude
+            :
+            23.461888,
+        longitude
+            :
+            91.1638528
+    }
+
+    const [islocation, setisLocation] = useState(nolocation);
+
+    const [isloading, setisLoading] = useState(false);
+
+
+    // useMap hook
+    const { location } = useMap(islocation);
+    console.log("Map to use map", location)
+
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
 
-    let islocation = true;
-    // const [islocation, setisLocation] = useState(false);
-    const [isloading, setisLoading] = useState(false);
 
-    const apiKey = 'AIzaSyD0JoV7YKa9kV63QHVz7XG2Ij1on6SLjB8';
-    // Make a request to find hotels near a location
-    const location = { lat: 37.7749, lng: -122.4194 }; // Example coordinates for San Francisco
-    const radius = 1000; // Search within a 1 km radius
-    const type = 'lodging'; // Search for lodging (hotels)
+    useEffect(() => {
 
-    // useEffect(() => {
+        // Create a new map instance
+        if (window.google && window.google.maps) {
+            // Create a new map instance
+            setisLoading(true);
+            if (location) {
+                const map = new window.google.maps.Map(document.getElementById('map'), {
+                    center: { lat: -34.397, lng: 150.644 },
+                    // center: { lat: islocation.latitude, lng: islocation.longitude },
+                    zoom: 30,
+                });
 
-    //     // Create a new map instance
-    //     if (window.google && window.google.maps) {
-    //         // Create a new map instance
-    //         setisLoading(true);
-    //         if (islocation) {
-    //             const map = new window.google.maps.Map(document.getElementById('map'), {
-    //                 center: { lat: -34.397, lng: 150.644 },
-    //                 // center: { lat: islocation.latitude, lng: islocation.longitude },
-    //                 zoom: 30,
-    //             });
+                // Optionally, you can add markers, polygons, etc.
 
-    //             // Optionally, you can add markers, polygons, etc.
+                const marker = new window.google.maps.Marker({
+                    position: { lat: -34.397, lng: 150.644 },
+                    // position: { lat: islocation.latitude, lng: islocation.longitude },
+                    map: map,
+                    title: 'Hello World!',
+                });
+                marker.setMap(map);
+                setisLoading(false);
+            } else {
+                console.log("islocation error", islocation);
+                setisLoading(false);
+            }
+        } else {
+            console.error('Google Maps API not loaded.');
+            setisLoading(false);
+        }
+    }, [islocation]);
 
-    //             const marker = new window.google.maps.Marker({
-    //                 position: { lat: -34.397, lng: 150.644 },
-    //                 // position: { lat: islocation.latitude, lng: islocation.longitude },
-    //                 map: map,
-    //                 title: 'Hello World!',
-    //             });
-    //             marker.setMap(map);
-    //             setisLoading(false);
-    //         } else {
-    //             console.log("islocation error", islocation);
-    //             setisLoading(false);
-    //         }
-    //     } else {
-    //         console.error('Google Maps API not loaded.');
-    //         setisLoading(false);
-    //     }
-    // }, [islocation]);
+    // usemap hooks
 
 
     const handleLocationReceived = (location) => {
         // Handle the received location, for example, save it to state or perform any other action
         console.log('Received Location:', location);
-        // setisLocation(location);
+        setisLocation(location);
+        navigate("/map");
 
     };
-
-    // onLocationReceived={handleLocationReceived}
-
-
 
 
 
@@ -147,12 +153,12 @@ const Hero = () => {
     }
 
 
+
     // && !isloading
 
-    // if (islocation  ) {
-    //     console.log("islocation true");
-    //     navigate("/map");       
-    // }
+    if (islocation) {
+        console.log("islocation true");
+    }
 
 
     return (
@@ -168,7 +174,7 @@ const Hero = () => {
                             {/* <i class="fa-solid fa-map-location-dot"> */}
                             <LocatinBtn onLocationReceived={handleLocationReceived} >
                             </LocatinBtn>
-                      
+
                         </div>
                     </div>
 
@@ -184,7 +190,7 @@ const Hero = () => {
                                                 onclick="setDatepicker(this)">
                                             </i> */}
                                             {/* <i class="fa-solid fa-calendar"></i> */}
-                                            <i class="fa-sharp fa-solid fa-calendar"></i>
+                                            {/* <i class="fa-sharp fa-solid fa-calendar"></i> */}
                                         </span>
                                     </span>
 
@@ -203,7 +209,8 @@ const Hero = () => {
                                             {/* <i class="fa fa-calendar"
                                                 onclick="setDatepicker(this)">
                                             </i> */}
-                                            <i class="fa-solid fa-calendar"></i>
+                                            {/* <i class="fa-solid fa-calendar"></i> */}
+                                            {/* <i class="fa-solid fa-calendar"></i> */}
                                         </span>
                                     </span>
 
@@ -326,10 +333,10 @@ const Hero = () => {
 
                     </form>
                     <div class="banner">
-                    
+
                         {/* <div id="map" style={{ width: '400px', height: '400px' }}>
                         </div> */}
-                
+
                         {/* <img class="col-lg-4" src={img1} alt="My Image" />
                         <img class="col-lg-4" src="images/img2.png" />
                         <img class="col-lg-4" src="images/img3.png" /> */}

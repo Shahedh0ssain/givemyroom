@@ -9,7 +9,7 @@ const Home = () => {
     return (
         <div>
             <Hero></Hero>
-            {/* <mapComponent></mapComponent> */}
+      
         </div>
     );
 };

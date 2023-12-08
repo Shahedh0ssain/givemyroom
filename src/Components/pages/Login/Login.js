@@ -9,46 +9,10 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import app from "../../../firebase.init";
 import { getAuth } from "firebase/auth";
 import FacebookLogin from '../../FacebookLogin/FacebookLogin';
-import mapComponent from '../../mapComponent/mapComponent';
+import useMap from '../../Hooks/useMap';
+// import mapComponent from '../../mapComponent/mapComponent';
 
-// const auth = getAuth(app)
 const Login = () => {
-
-
-    let islocation = true;
-
-    useEffect(() => {
-
-        // Create a new map instance
-        if (window.google && window.google.maps) {
-            // Create a new map instance
-            // setisLoading(true);
-            if (islocation) {
-                const map = new window.google.maps.Map(document.getElementById('map'), {
-                    center: { lat: -34.397, lng: 150.644 },
-                    // center: { lat: islocation.latitude, lng: islocation.longitude },
-                    zoom: 10,
-                });
-
-                // Optionally, you can add markers, polygons, etc.
-
-                const marker = new window.google.maps.Marker({
-                    position: { lat: -34.397, lng: 150.644 },
-                    // position: { lat: islocation.latitude, lng: islocation.longitude },
-                    map: map,
-                    title: 'Hello World!',
-                });
-                marker.setMap(map);
-                // setisLoading(false);
-            } else {
-                console.log("islocation error", islocation);
-                // setisLoading(false);
-            }
-        } else {
-            console.error('Google Maps API not loaded.');
-            // setisLoading(false);
-        }
-    }, [islocation]);
 
 
     const auth = getAuth(app);
@@ -62,6 +26,45 @@ const Login = () => {
     let location = useLocation();
     let navigate = useNavigate();
     let from = location.state?.from?.pathname || "/";
+    // useMap hook
+
+    const { myLocation } = useMap();
+    // let islocation = true;
+
+    useEffect(() => {
+
+        // Create a new map instance
+        if (window.google && window.google.maps) {
+            // Create a new map instance
+            // setisLoading(true);
+            if (myLocation) {
+                const map = new window.google.maps.Map(document.getElementById('map'), {
+                    // center: { lat: -34.397, lng: 150.644 },
+                    center: { lat: myLocation.latitude, lng: myLocation.longitude },
+                    zoom: 10,
+                });
+
+                // Optionally, you can add markers, polygons, etc.
+
+                const marker = new window.google.maps.Marker({
+                    // position: { lat: -34.397, lng: 150.644 },
+                    position: { lat: myLocation.latitude, lng: myLocation.longitude },
+                    map: map,
+                    title: 'Hello World!',
+                });
+                marker.setMap(map);
+                // setisLoading(false);
+            } else {
+                console.log("islocation error", myLocation);
+                // setisLoading(false);
+            }
+        } else {
+            console.error('Google Maps API not loaded.');
+            // setisLoading(false);
+        }
+    }, [myLocation]);
+
+
 
     // const [signInWithGoogle, user, error] = useSignInWithGoogle(auth)
     // const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);

@@ -11,16 +11,16 @@ const Requireauth = ({ chiddren }) => {
     const [user, loading] = useAuthState(auth);
     const location = useLocation();
 
-    console.log('user', user);
+    // console.log('user', user);
 
     if (loading) {
         console.log('loading');
     }
-    if (user) {
-        return chiddren;
+    if (!user) {
+        return <Navigate to="/login" state={{ from: location }} replace />;
     }
 
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return chiddren;
 
 
 

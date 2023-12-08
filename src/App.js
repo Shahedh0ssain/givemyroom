@@ -22,7 +22,7 @@ function App() {
         <Route path="/map" element={<Map />}></Route>
         {/* <Route  path="/map" element={
           <Requireauth>
-            <Map></Map>
+            <Map/>
           </Requireauth>
         }></Route> */}
         <Route path="/login" element={<Login />}></Route>
